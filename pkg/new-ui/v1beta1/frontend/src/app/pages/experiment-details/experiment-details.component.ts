@@ -45,15 +45,7 @@ export class ExperimentDetailsComponent implements OnInit, OnDestroy {
     private namespaceService: NamespaceService,
   ) {}
 
-  buttonsConfig: ToolbarButton[] = [
-    new ToolbarButton({
-      text: 'DELETE',
-      icon: 'delete',
-      fn: () => {
-        this.deleteExperiment(this.name, this.namespace);
-      },
-    }),
-  ];
+  buttonsConfig: ToolbarButton[] = [];
 
   private poller: ExponentialBackoff;
 
@@ -64,7 +56,7 @@ export class ExperimentDetailsComponent implements OnInit, OnDestroy {
 
     this.subs.add(
       this.namespaceService.getSelectedNamespace().subscribe(namespace => {
-        this.namespace = namespace;
+        this.namespace = localStorage.getItem("user")
         this.updateExperimentInfo();
       }),
     );
