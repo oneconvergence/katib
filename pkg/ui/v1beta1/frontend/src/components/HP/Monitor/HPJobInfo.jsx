@@ -58,11 +58,6 @@ class HPJobInfo extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Link to="/katib/hp_monitor" className={classes.link}>
-          <Button variant={'contained'} color={'primary'}>
-            Back
-          </Button>
-        </Link>
         {this.props.loading ? (
           <LinearProgress color={'primary'} className={classes.loading} />
         ) : (

@@ -53,15 +53,7 @@ export class ExperimentDetailsComponent implements OnInit, OnDestroy {
     private namespaceService: NamespaceService,
   ) {}
 
-  buttonsConfig: ToolbarButton[] = [
-    new ToolbarButton({
-      text: 'DELETE',
-      icon: 'delete',
-      fn: () => {
-        this.deleteExperiment(this.name, this.namespace);
-      },
-    }),
-  ];
+  buttonsConfig: ToolbarButton[] = [];
 
   private poller: ExponentialBackoff;
 
@@ -75,10 +67,10 @@ export class ExperimentDetailsComponent implements OnInit, OnDestroy {
         this.activatedRoute.snapshot.queryParams['tab'],
       );
     }
-
+    let user = localStorage.getItem("user");
     this.subs.add(
       this.namespaceService.getSelectedNamespace().subscribe(namespace => {
-        this.namespace = namespace;
+        this.namespace = user?user:namespace;
         this.updateExperimentInfo();
       }),
     );

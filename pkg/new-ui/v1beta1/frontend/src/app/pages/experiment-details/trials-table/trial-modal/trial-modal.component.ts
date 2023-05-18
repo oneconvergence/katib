@@ -59,10 +59,10 @@ export class TrialModalComponent implements OnInit {
   ngOnInit() {
     this.trialName = this.activatedRoute.snapshot.params.trialName;
     this.experimentName = this.activatedRoute.snapshot.params.experimentName;
-
+    let user = localStorage.getItem("user");
     this.subs.add(
       this.namespaceService.getSelectedNamespace().subscribe(namespace => {
-        this.namespace = namespace;
+        this.namespace = user?user:namespace;
         this.updateTrialInfo();
       }),
     );
